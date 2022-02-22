@@ -17,6 +17,7 @@ import android.util.Log;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 import android.widget.ViewFlipper;
 
 import com.alaminkarno.movieinfo.R;
@@ -93,14 +94,19 @@ public class MovieListActivity extends AppCompatActivity implements OnMovieListe
         movieListViewModel.getMovies().observe(this, new Observer<List<MovieModel>>() {
             @Override
             public void onChanged(List<MovieModel> movieModels) {
+
                 if(movieModels != null){
                     for(MovieModel movieModel: movieModels){
 
                         Log.d("tag","onChange: "+movieModel.getPoster_path());
 
-                        movieRecyclerViewAdapter.setMovies(movieModels);
+                        if(!movieModels.isEmpty()){
 
-                        setSliderImageView(movieModel.getBackdrop_path(),movieModel.getTitle());
+                            movieRecyclerViewAdapter.setMovies(movieModels);
+
+                            setSliderImageView(movieModel.getBackdrop_path(),movieModel.getTitle());
+                        }
+
                     }
                 }
             }
@@ -113,11 +119,15 @@ public class MovieListActivity extends AppCompatActivity implements OnMovieListe
             @Override
             public void onChanged(List<MovieModel> movieModels) {
                 if(movieModels != null){
+
                     for(MovieModel movieModel: movieModels){
 
                         Log.d("tag","onChange: "+movieModel.getTitle());
 
-                        movieRecyclerViewAdapter.setMovies(movieModels);
+                        if(!movieModels.isEmpty()){
+                            movieRecyclerViewAdapter.setMovies(movieModels);
+                        }
+
 
                         //setSliderImageView(movieModel.getBackdrop_path());
                     }
@@ -168,8 +178,14 @@ public class MovieListActivity extends AppCompatActivity implements OnMovieListe
         movieRecyclerView.addOnScrollListener(new RecyclerView.OnScrollListener() {
             @Override
             public void onScrollStateChanged(@NonNull RecyclerView recyclerView, int newState) {
-                if(movieRecyclerView.canScrollHorizontally(1)){
-                    movieListViewModel.searchNextPage();
+                if(movieRecyclerView.canScrollHorizontally(-1)){
+                    //movieListViewModel.searchNextPage();
+                    //movieListViewModel.popularNextPage();
+                    //Toast.makeText(MovieListActivity.this, "Scroll Horizontal", Toast.LENGTH_SHORT).show();
+                }
+                else{
+
+                    //Toast.makeText(MovieListActivity.this, "Reverse", Toast.LENGTH_SHORT).show();
                 }
             }
         });

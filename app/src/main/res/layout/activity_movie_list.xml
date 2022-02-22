@@ -7,6 +7,19 @@
     android:orientation="vertical"
     tools:context=".view.activity.MovieListActivity">
 
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Search Movie"
+        android:paddingStart="25dp"
+        android:paddingLeft="25dp"
+        android:paddingRight="25dp"
+        android:paddingTop="15dp"
+        android:paddingBottom="10dp"
+        android:backgroundTint="@color/teal_200"
+        android:background="@color/teal_200"
+        android:textSize="20sp"/>
+
     <androidx.appcompat.widget.Toolbar
         android:id="@+id/toolbar"
         android:layout_width="match_parent"
@@ -15,6 +28,7 @@
         app:layout_scrollFlags="scroll|enterAlways"
         android:theme="@style/ThemeOverlay.AppCompat.Light"
         app:popupTheme="@style/ThemeOverlay.AppCompat.Light">
+
 
         <androidx.appcompat.widget.SearchView
             android:id="@+id/searchView"

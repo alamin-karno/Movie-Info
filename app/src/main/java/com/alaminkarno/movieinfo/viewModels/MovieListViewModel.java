@@ -32,6 +32,10 @@ public class MovieListViewModel extends ViewModel {
         movieRepository.searchPopularMovieApi(pageNumber);
     }
 
+    public void popularNextPage(){
+        movieRepository.popularNextPage();
+    }
+
     public void searchNextPage(){
         movieRepository.searchNextPage();
     }

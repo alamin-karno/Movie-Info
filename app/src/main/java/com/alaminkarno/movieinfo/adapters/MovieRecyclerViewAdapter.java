@@ -1,6 +1,6 @@
 package com.alaminkarno.movieinfo.adapters;
 
-import android.content.Context;
+import android.annotation.SuppressLint;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -23,6 +23,9 @@ public class MovieRecyclerViewAdapter extends RecyclerView.Adapter<MovieRecycler
     private List<MovieModel> movies;
     private OnMovieListener onMovieListener;
 
+    private static final int DISPLAY_POPULAR_MOVIE = 1;
+    private static final int DISPLAY_SEARCHED_MOVIE = 2;
+
     public MovieRecyclerViewAdapter(OnMovieListener onMovieListener) {
         this.onMovieListener = onMovieListener;
     }
@@ -30,10 +33,20 @@ public class MovieRecyclerViewAdapter extends RecyclerView.Adapter<MovieRecycler
     @NonNull
     @Override
     public MovieViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.model_design_movie_item_list,parent,false);
-        return new MovieViewHolder(view,onMovieListener);
+
+        View view = null;
+        if(viewType == DISPLAY_SEARCHED_MOVIE){
+            view = LayoutInflater.from(parent.getContext()).inflate(R.layout.model_design_movie_item_list,parent,false);
+            return new MovieViewHolder(view,onMovieListener);
+        }
+        else{
+            view = LayoutInflater.from(parent.getContext()).inflate(R.layout.model_design_movie_item_list,parent,false);
+            return new MovieViewHolder(view,onMovieListener);
+        }
+
     }
 
+    @SuppressLint("SetTextI18n")
     @Override
     public void onBindViewHolder(@NonNull MovieViewHolder holder, int position) {
 

@@ -53,6 +53,10 @@ public class MovieRepository {
         movieApiClient.searchPopularMovieApi(pageNumber);
     }
 
+    public void popularNextPage(){
+        searchPopularMovieApi(mPageNumber+1);
+    }
+
     public void searchNextPage(){
 
         searchMovieApi(mQuery,mPageNumber+1);
